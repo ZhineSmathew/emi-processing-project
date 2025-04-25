@@ -54,6 +54,8 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Process Data</button>
+            <a class="btn btn-info" href="{{ route('dashboard') }}"> Back</a>
+
         </form>
     </div>
 @endsection
