@@ -29,7 +29,7 @@ class LoanController extends Controller
         $loanData = $request->validate([
             'clientid' => 'required|integer',
             'loan_amount' => 'required|numeric',
-            'num_of_payment' => 'required|integer|min:3',
+            'num_of_payment' => 'required|integer|min:1',
             'first_payment_date' => 'required|date',
             'last_payment_date' => 'required|date|after_or_equal:first_payment_date',
         ]);
@@ -38,9 +38,9 @@ class LoanController extends Controller
             $loanDetail = $this->loanRepository->create($loanData);
         }
 
-        $success = $this->loanService->processData();
+        $result = $this->loanService->processData();
 
-        if (!$success) {
+        if (!$result) {
             return redirect()->back()->with('error', 'Failed to generate EMI table.');
         }
 
